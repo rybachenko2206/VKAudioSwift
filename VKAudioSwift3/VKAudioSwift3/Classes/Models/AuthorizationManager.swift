@@ -10,7 +10,25 @@ import Foundation
 
 
 class AuthorizationManager {
+    // MARK: Properties
     static let sharedInstance = AuthorizationManager()
     
-//    var currentUser
+    var authorizationInfo: [String : AnyObject]? {
+        get {
+            return UserDefaults.standard.value(forKey: kVkAuthDict) as! [String : AnyObject]?
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey:kVkAuthDict)
+        }
+    }
+    
+    
+    // MARK: Public funcs
+    func isAuthorized() -> Bool {
+        if authorizationInfo != nil {
+            return true
+        }
+        
+        return false
+    }
 }

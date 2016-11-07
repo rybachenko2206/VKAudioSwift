@@ -15,9 +15,7 @@ let vkScope = ["friends", "audio"]
 
 
 // UserDefaults keys
-let kVKAccessToken = "vkAccessToken"
-let kVKAuthorizationDate = "vkAuthorizationDate"
-
+let kVkAuthDict = "vkAuthDict"
 
 // Response keys
 let kAccessToken = "access_token"

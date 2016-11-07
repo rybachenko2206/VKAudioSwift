@@ -38,7 +38,11 @@ class AuthorizationViewController: UIViewController, UIWebViewDelegate {
     // MARK: —UIWebViewDelegate
     func webViewDidFinishLoad(_ webView: UIWebView) {
         if webView.request?.url?.absoluteString.contains("access_token") == true {
-            //
+            let authParams = fetchParametersFromURL(url: webView.request!.url!)
+            if authParams != nil && (authParams?.keys.count)! > 0 {
+                AuthorizationManager.sharedInstance.authorizationInfo = authParams
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
@@ -54,6 +58,31 @@ class AuthorizationViewController: UIViewController, UIWebViewDelegate {
     
     
     // MARK: Private funcs
+    
+    private func fetchParametersFromURL(url: URL) -> [String:AnyObject]? {
+        var parameters = [String:AnyObject]()
+        let responseStr = url.absoluteString
+        
+        let urlComponents = URLComponents(string: responseStr)
+        let fragmentStr = urlComponents?.fragment
+        if let paramsStr = fragmentStr {
+            let componetsAr = paramsStr.components(separatedBy: "&")
+            
+            for component in componetsAr {
+                let paramAr = component.components(separatedBy: "=")
+                parameters[paramAr.first!] = paramAr.last! as AnyObject?
+            }
+        }
+        
+        if parameters.keys.contains(kAccessToken) &&
+            parameters.keys.contains(kExpiresIn) &&
+            parameters.keys.contains(kUserId) {
+            
+            return parameters
+        }
+        
+        return nil
+    }
     
     private func scopeString() -> String {
         var scopeStr = ""

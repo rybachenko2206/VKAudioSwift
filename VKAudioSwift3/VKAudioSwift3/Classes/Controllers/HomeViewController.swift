@@ -15,22 +15,18 @@ class HomeViewController: UIViewController {
     // MARK: Overriden funcs
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AuthorizationManager.sharedInstance.authorizationInfo = nil
 
-        self.navigationItem.title = "Home"
+        self.navigationItem.title = "My Profile"
         presentAuthorizationVc()
     }
 
     
     // MARK: Private funcs
-    private func accessToken() -> String? {
-        let token = UserDefaults.standard.string(forKey: kVKAccessToken)
-        
-        return token
-    }
     
     private func presentAuthorizationVc() {
-        let token = accessToken()
-        if token == nil {
+        if AuthorizationManager.sharedInstance.isAuthorized() == false {
             let stIdentifier = AuthorizationViewController.storyboardIdentifier()
             let authVc = UIStoryboard.main().instantiateViewController(withIdentifier: stIdentifier)
             present(authVc, animated: false, completion: nil)
