@@ -1,0 +1,8 @@
+platform :ios, '10.0'
+use_frameworks!
+
+target 'VKAudioSwift3' do
+  pod 'AFNetworking', '~> 3.0'
+  pod 'SwiftyJSON'
+  pod 'SVProgressHUD'
+end

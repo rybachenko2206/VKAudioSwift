@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class AuthorizationViewController: UIViewController, UIWebViewDelegate {
     // MARK: Outlets
@@ -36,6 +37,17 @@ class AuthorizationViewController: UIViewController, UIWebViewDelegate {
     // MARK: Delegate funcs:
     
     // MARK: —UIWebViewDelegate
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        SVProgressHUD.show()
+        
+        return true
+    }
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        
+    }
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
         if webView.request?.url?.absoluteString.contains("access_token") == true {
             let authParams = fetchParametersFromURL(url: webView.request!.url!)
