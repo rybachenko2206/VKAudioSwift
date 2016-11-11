@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         customizeNavigationBar()
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.gradient)
         
+        // delete after
+        AuthorizationManager.sharedInstance.authorizationInfo = nil
+        
         return true
     }
 

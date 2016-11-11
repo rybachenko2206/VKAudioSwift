@@ -53,13 +53,125 @@
                     <view key="view" contentMode="scaleToFill" id="3QM-5E-kV7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IzX-Io-lsI">
+                                <rect key="frame" x="16" y="80" width="121" height="144"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="121" id="oOo-cl-l9w"/>
+                                    <constraint firstAttribute="height" constant="144" id="ufL-We-Wj4"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="birth label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny2-tH-hl0">
+                                <rect key="frame" x="145" y="87" width="214" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="CAF-7t-HSt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="21E-ap-Tjd">
+                                <rect key="frame" x="145" y="107" width="214" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="Ph5-qg-diW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-DM-YTn">
+                                <rect key="frame" x="145" y="147" width="214" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="1oK-Ma-9YG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="relation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N94-Xz-4CN">
+                                <rect key="frame" x="145" y="166" width="214" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="oDc-jD-sMy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWV-Bc-6f9">
+                                <rect key="frame" x="16" y="250" width="285" height="30"/>
+                                <color key="backgroundColor" red="0.01176470588" green="0.4431372549" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="TRO-e3-60G"/>
+                                    <constraint firstAttribute="width" constant="285" id="obt-d9-Ceg"/>
+                                </constraints>
+                                <state key="normal" title="Go To Audio Files">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="audioButtonTapped:" destination="hlh-rm-LZE" eventType="touchUpInside" id="rZs-3j-Nz4"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oxH-DM-YTn" firstAttribute="leading" secondItem="IzX-Io-lsI" secondAttribute="trailing" constant="8" id="AxB-MJ-xdI"/>
+                            <constraint firstAttribute="trailing" secondItem="oxH-DM-YTn" secondAttribute="trailing" constant="16" id="Dac-Ah-2dS"/>
+                            <constraint firstItem="oxH-DM-YTn" firstAttribute="top" secondItem="21E-ap-Tjd" secondAttribute="bottom" constant="5" id="EfB-YH-AVS"/>
+                            <constraint firstItem="IzX-Io-lsI" firstAttribute="leading" secondItem="3QM-5E-kV7" secondAttribute="leading" constant="16" id="Jdj-Al-q4V"/>
+                            <constraint firstItem="ny2-tH-hl0" firstAttribute="top" secondItem="vdV-8T-NNC" secondAttribute="bottom" constant="23" id="Qpc-C6-43N"/>
+                            <constraint firstItem="IzX-Io-lsI" firstAttribute="top" secondItem="vdV-8T-NNC" secondAttribute="bottom" constant="16" id="VtE-tT-I98"/>
+                            <constraint firstAttribute="trailing" secondItem="21E-ap-Tjd" secondAttribute="trailing" constant="16" id="WOy-W8-8CU"/>
+                            <constraint firstItem="21E-ap-Tjd" firstAttribute="leading" secondItem="IzX-Io-lsI" secondAttribute="trailing" constant="8" id="a0R-Jf-8Sq"/>
+                            <constraint firstItem="N94-Xz-4CN" firstAttribute="leading" secondItem="IzX-Io-lsI" secondAttribute="trailing" constant="8" id="fn8-QB-h77"/>
+                            <constraint firstAttribute="trailing" secondItem="N94-Xz-4CN" secondAttribute="trailing" constant="16" id="g6s-I9-5NI"/>
+                            <constraint firstAttribute="trailing" secondItem="ny2-tH-hl0" secondAttribute="trailing" constant="16" id="lWQ-eH-vpB"/>
+                            <constraint firstItem="ny2-tH-hl0" firstAttribute="leading" secondItem="IzX-Io-lsI" secondAttribute="trailing" constant="8" id="r0G-sy-Gfu"/>
+                            <constraint firstItem="21E-ap-Tjd" firstAttribute="top" secondItem="ny2-tH-hl0" secondAttribute="bottom" constant="2" id="u9k-OY-6zF"/>
+                            <constraint firstItem="N94-Xz-4CN" firstAttribute="top" secondItem="oxH-DM-YTn" secondAttribute="bottom" constant="4" id="w8T-aX-TDk"/>
+                            <constraint firstItem="oWV-Bc-6f9" firstAttribute="top" secondItem="IzX-Io-lsI" secondAttribute="bottom" constant="26" id="wdL-Eu-34R"/>
+                            <constraint firstItem="oWV-Bc-6f9" firstAttribute="leading" secondItem="3QM-5E-kV7" secondAttribute="leading" constant="16" id="zJa-8b-Teo"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nhH-hh-UQY"/>
+                    <connections>
+                        <outlet property="avatarImageView" destination="IzX-Io-lsI" id="eC1-wJ-vjq"/>
+                        <outlet property="birthLabel" destination="ny2-tH-hl0" id="hav-HP-hf7"/>
+                        <outlet property="genderLabel" destination="oxH-DM-YTn" id="S7w-oj-gyx"/>
+                        <outlet property="nameLabel" destination="21E-ap-Tjd" id="LFh-cY-NkI"/>
+                        <outlet property="relationLabel" destination="N94-Xz-4CN" id="3is-w7-ymU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeO-LA-jga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1959" y="139"/>
+            <point key="canvasLocation" x="1957.5999999999999" y="138.98050974512745"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="Dwm-Qc-YoD">
+            <objects>
+                <tableViewController id="bmh-JK-rPV" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aAT-Ep-Bkq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Df1-4x-Lxo">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Df1-4x-Lxo" id="uLN-1o-kBa">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bmh-JK-rPV" id="fSx-HS-GqH"/>
+                            <outlet property="delegate" destination="bmh-JK-rPV" id="KpG-6s-JeF"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9sB-zV-CjT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2721" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RmY-Bh-0mq">

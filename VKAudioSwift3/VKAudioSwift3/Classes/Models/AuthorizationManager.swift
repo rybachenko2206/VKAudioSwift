@@ -12,6 +12,7 @@ import Foundation
 class AuthorizationManager {
     // MARK: Properties
     static let sharedInstance = AuthorizationManager()
+    var currentUser: VKUser?
     
     var authorizationInfo: [String : AnyObject]? {
         get {

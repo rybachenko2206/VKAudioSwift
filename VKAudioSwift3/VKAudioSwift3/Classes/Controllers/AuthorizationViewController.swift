@@ -44,22 +44,20 @@ class AuthorizationViewController: UIViewController, UIWebViewDelegate {
         return true
     }
     
-    func webViewDidStartLoad(_ webView: UIWebView) {
-        
-    }
-    
     func webViewDidFinishLoad(_ webView: UIWebView) {
         if webView.request?.url?.absoluteString.contains("access_token") == true {
             let authParams = fetchParametersFromURL(url: webView.request!.url!)
             if authParams != nil && (authParams?.keys.count)! > 0 {
                 AuthorizationManager.sharedInstance.authorizationInfo = authParams
                 self.dismiss(animated: true, completion: nil)
+                SVProgressHUD.dismiss()
             }
         }
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         print("webView didFailLoadWithError: \(error.localizedDescription)")
+        SVProgressHUD.dismiss()
     }
     
     // MARK: Static funcs
