@@ -19,51 +19,32 @@ class DownloadManager {
     var notDownloaded: [VKAudio] = []
     
     var counter: Int = 0
-    var isDownloading = false {
-        didSet {
-            if isDownloading == false && counter < audioList.count {
-                let audio = audioList[counter]
-                isDownloading = true
-                self.downloadAudio(audio: audio,
-                                   completion: {(finished: Bool) -> Void in
-                                    
-                })
-            }
-        }
-    }
     
     
-    func downloadAll(audioList: [VKAudio], completion: @escaping finished) {
+    func downloadAll(audioListArray: [VKAudio], completion: @escaping finished) {
+        self.audioList = audioListArray
         let audio = audioList[counter]
-        isDownloading = true
-        downloadAudio(audio: audio,
-                      completion: { finished in
-                        
-                        if self.counter == self.audioList.count {
-                            completion(true)
-                        }
+        
+        self.downloadAudio(audio: audio,
+                           daCompletion: { finished in
+                            
+                            if self.counter == self.audioList.count {
+                                completion(true)
+                            } else {
+                                self.downloadAll(audioListArray: audioListArray,
+                                                 completion: {response in})
+                            }
         })
     }
     
-    func downloadAudio(audio: VKAudio, completion: @escaping finished) {
+    func downloadAudio(audio: VKAudio, daCompletion: @escaping finished) {
         WebService.sharedInstance.downloadAudio(audio: audio,
                                                 completion: {responseInfo in
-                                                    self.isDownloading = false
                                                     
                                                     self.counter = self.counter + 1
-                                                    
                                                     self.handleDownloadAudioResponse(response: responseInfo)
                                                     
-                                                    if responseInfo.error != nil {
-                                                        self.notDownloaded.append(audio)
-                                                    }
-                                                    
-                                                    if self.counter == self.audioList.count {
-                                                        print("\n~~notDownloaded count = \(self.notDownloaded.count)\n")
-                                                        print(self.notDownloaded)
-                                                        completion(true)
-                                                    }
-                                                    
+                                                    daCompletion(true)
         })
     }
     
@@ -72,10 +53,15 @@ class DownloadManager {
         let audio = response.response as! VKAudio
         let fileName = audio.saveFileName()
         if response.error != nil {
+            self.notDownloaded.append(audio)
             print("\n~~download file \(fileName) error: \(response.error?.localizedDescription)")
         } else {
             print("\n~~file \(fileName) is downloaded successfully")
         }
-        self.isDownloading = false
+        
+        if self.counter == self.audioList.count {
+            print("~~downloading is finished\n~~notDownloaded count = \(self.notDownloaded.count)\n")
+            print(self.notDownloaded)
+        }
     }
 }

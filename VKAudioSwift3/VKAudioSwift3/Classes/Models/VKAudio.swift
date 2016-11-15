@@ -44,6 +44,7 @@ class VKAudio {
             fileName = title!
         }
         if artist != nil {
+            fileName.append(" - ")
             fileName.append(artist!)
         }
         if fileName.characters.count == 0 {

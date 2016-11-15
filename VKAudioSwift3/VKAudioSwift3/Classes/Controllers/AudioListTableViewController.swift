@@ -44,7 +44,18 @@ class AudioListTableViewController: UITableViewController, AudioCellDelegate {
     // MARK: Action funcs
 
     @IBAction func downloadAllButtonTapped(_ sender: UIButton) {
+        SVProgressHUD.show(withStatus: "Downloading..")
+        DownloadManager.sharedInstance.downloadAll(audioListArray: audioList,
+                                                   completion: {finished in
+                                                    if finished == true {
+                                                        SVProgressHUD.show(withStatus: "Finished")
+                                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000),
+                                                                                      execute: {() -> Void in
+                                                            SVProgressHUD.dismiss()
+                                                        })
+                                                    }
         
+        })
     }
     
     // MARK: Delegate funcs:
@@ -83,10 +94,9 @@ class AudioListTableViewController: UITableViewController, AudioCellDelegate {
     }
     
     func downloadButtonTappedInCell(cell: AudioCell) {
-        SVProgressHUD.show(withStatus: "Downloading all..")
-        DownloadManager.sharedInstance.downloadAll(audioList: audioList,
-                                                   completion: {finished in
-                                                    
+        SVProgressHUD.show()
+        WebService.sharedInstance.downloadAudio(audio: cell.audio!,
+                                                completion: {response in
                                                     SVProgressHUD.dismiss()
         })
     }

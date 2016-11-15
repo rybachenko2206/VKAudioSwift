@@ -117,7 +117,7 @@ class WebService: AFHTTPSessionManager {
     
     func getAudio(parameters: [String:AnyObject],
                   completion: @escaping completionBlock) {
-        
+        self.requestSerializer.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:49.0) Gecko/20100101 Firefox/49.0", forHTTPHeaderField: "User-Agent")
         self.get(apiGetAudio,
                  parameters: parameters,
                  progress: nil,
@@ -137,17 +137,45 @@ class WebService: AFHTTPSessionManager {
     
     func downloadAudio(audio: VKAudio, completion: @escaping completionBlock) {
         let url: URL = URL(string: audio.url)!
-        let request: URLRequest = URLRequest(url: url)
         
         let fileName = audio.saveFileName()
         var pathToSave: URL = AudioFileManager.audioFilesDirectory().appendingPathComponent(fileName)
         pathToSave = pathToSave.appendingPathExtension("mp3")
+//        let fm = FileManager.default
+//        
+//        let configuration = URLSessionConfiguration.default
+//        let session = URLSession(configuration: configuration)
+//        
+//        session.downloadTask(with: url,
+//                             completionHandler: {url, urlRespnse, error in
+//                                
+//                                if fm.fileExists(atPath: pathToSave.absoluteString) == true {
+//                                    do {
+//                                        try fm.removeItem(at: pathToSave)
+//                                    } catch let error as Error {
+//                                        print(error.localizedDescription)
+//                                    }
+//                                } else {
+//                                    if let locationUrl = url {
+//                                        do {
+//                                            try fm.moveItem(at: locationUrl,
+//                                                            to: pathToSave)
+//                                        } catch let error as Error {
+//                                            print(error.localizedDescription)
+//                                        }
+//                                    }
+//                                }
+//                                
+//                                let responseInfo = ResponseInfo(response: url, error: error, task: nil)
+//                                completion(responseInfo)
+//        }).resume()
         
+        let request = URLRequest(url: url)
         self.downloadTask(with: request,
                           progress: nil,
                           destination: {(url, urlResponse) in pathToSave
                             
-                            
+
         },
                           completionHandler: {(url, urlResponse, error) in
                             let responseInfo = ResponseInfo(response: audio, error: error, task: nil)
@@ -155,4 +183,5 @@ class WebService: AFHTTPSessionManager {
         }).resume()
         
     }
+    
 }
