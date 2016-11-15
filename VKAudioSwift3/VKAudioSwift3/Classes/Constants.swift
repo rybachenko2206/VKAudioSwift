@@ -25,7 +25,7 @@ let kResponse = "response"
 let kBirthDate = "bdate"
 let kBirthDateVisibility = "bdate_visibility"
 let kCity = "city"
-let kCid = "cid"
+let kId = "id"
 let kTitle = "title"
 let kCountry = "country"
 let kFirstName = "first_name"
@@ -43,7 +43,21 @@ let kUserIds = "user_ids"
 let kUID = "uid"
 let kCityIds = "city_ids"
 let kCountryIds = "country_ids"
-
+let kCount = "count"
+let kItems = "items"
+let kOwnerId = "owner_id"
+let kArtist = "artist"
+let kDuration = "duration"
+let kDate = "date"
+let kUrl = "url"
+let kGenreId = "genre_id"
+let kGenre = "genre"
+let kAlbumId = "album_id"
+let kAudioIds = "audio_ids"
+let kNeedUser = "need_user"
+let kOffset = "offset"
+let kAid = "aid"
+let kLyricsId = "lyrics_id"
 
 
 // vk API version
@@ -58,6 +72,7 @@ let apiCountryById = "database.getCountriesById"
 let apiCityById = "database.getCitiesById"
 let apiGetAudio = "audio.get"
 let apiGetAlbums = "audio.getAlbums"
+let apiGetCountAudio = "audio.getCount"
 
 
 
@@ -78,4 +93,4 @@ let userParameters = [kBirthDate,
                       kPhoto200,
                       kPhotoMax]
 
-let getAudiosMaxCount = 5000
+let audiosMaxCount = 5000

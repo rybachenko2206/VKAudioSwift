@@ -11,6 +11,7 @@
 
 typealias completionBlock = (ResponseInfo) -> Void
 
+
 import Foundation
 import AFNetworking
 
@@ -31,7 +32,9 @@ class WebService: AFHTTPSessionManager {
     
     
     // MARK: Public funcs
-    func getUserProfile(token: String, userId: Int?, completion: @escaping completionBlock) {
+    func getUserProfile(token: String,
+                        userId: Int?,
+                        completion: @escaping completionBlock) {
         var parameters: [String:AnyObject] = [kAccessToken : token as AnyObject,
                                               kVkApiVersion : vkApiVersion as AnyObject]
         if userId != nil {
@@ -51,7 +54,10 @@ class WebService: AFHTTPSessionManager {
         })
     }
     
-    func getUsers(users: [String], token: String, fields: [String], completion: @escaping completionBlock) {
+    func getUsers(users: [String],
+                  token: String,
+                  fields: [String],
+                  completion: @escaping completionBlock) {
         let parameters: [String: AnyObject] = [kAccessToken : token as AnyObject,
                                                kVkApiVersion : vkApiVersion as AnyObject,
                                                kFields : VKUser.fieldsString(fields: fields) as AnyObject,
@@ -70,7 +76,9 @@ class WebService: AFHTTPSessionManager {
         })
     }
     
-    func getCitiesWithIds(cityIds: [Int], token: String, completion: @escaping completionBlock) {
+    func getCitiesWithIds(cityIds: [Int],
+                          token: String,
+                          completion: @escaping completionBlock) {
         let parameters = [kAccessToken : token as AnyObject,
                           kVkApiVersion : vkApiVersion as AnyObject,
                           kCityIds : VKUser.idsString(ids: cityIds) as AnyObject]
@@ -88,7 +96,9 @@ class WebService: AFHTTPSessionManager {
         })
     }
     
-    func getCountriesWithIds(countryIds: [Int], token: String, completion: @escaping completionBlock) {
+    func getCountriesWithIds(countryIds: [Int],
+                             token: String,
+                             completion: @escaping completionBlock) {
         let parameters = [kAccessToken : token as AnyObject,
                           kVkApiVersion : vkApiVersion as AnyObject,
                           kCountryIds : VKUser.idsString(ids: countryIds) as AnyObject]
@@ -105,4 +115,44 @@ class WebService: AFHTTPSessionManager {
         })
     }
     
+    func getAudio(parameters: [String:AnyObject],
+                  completion: @escaping completionBlock) {
+        
+        self.get(apiGetAudio,
+                 parameters: parameters,
+                 progress: nil,
+                 success: {(sessionDataTask: URLSessionDataTask, response: Any?) -> Void in
+                    let responseInfo = ResponseInfo(response: response,
+                                                    error: nil,
+                                                    task: sessionDataTask)
+                    completion(responseInfo)
+        },
+                 failure: {(sessionDataTask: URLSessionDataTask?, error: Error) -> Void in
+                    let responseInfo = ResponseInfo(response: nil,
+                                                    error: error,
+                                                    task: sessionDataTask)
+                    completion(responseInfo)
+        })
+    }
+    
+    func downloadAudio(audio: VKAudio, completion: @escaping completionBlock) {
+        let url: URL = URL(string: audio.url)!
+        let request: URLRequest = URLRequest(url: url)
+        
+        let fileName = audio.saveFileName()
+        var pathToSave: URL = AudioFileManager.audioFilesDirectory().appendingPathComponent(fileName)
+        pathToSave = pathToSave.appendingPathExtension("mp3")
+        
+        self.downloadTask(with: request,
+                          progress: nil,
+                          destination: {(url, urlResponse) in pathToSave
+                            
+                            
+        },
+                          completionHandler: {(url, urlResponse, error) in
+                            let responseInfo = ResponseInfo(response: audio, error: error, task: nil)
+                            completion(responseInfo)
+        }).resume()
+        
+    }
 }

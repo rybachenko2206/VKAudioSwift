@@ -145,20 +145,20 @@
             </objects>
             <point key="canvasLocation" x="1957.5999999999999" y="138.98050974512745"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Audio List Table View Controller-->
         <scene sceneID="Dwm-Qc-YoD">
             <objects>
-                <tableViewController id="bmh-JK-rPV" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aAT-Ep-Bkq">
+                <tableViewController storyboardIdentifier="AudioListTableViewController" id="bmh-JK-rPV" customClass="AudioListTableViewController" customModule="VKAudioSwift3" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" id="aAT-Ep-Bkq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Df1-4x-Lxo">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="52" id="Df1-4x-Lxo">
+                                <rect key="frame" x="0.0" y="28" width="375" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Df1-4x-Lxo" id="uLN-1o-kBa">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -168,10 +168,18 @@
                             <outlet property="delegate" destination="bmh-JK-rPV" id="KpG-6s-JeF"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="downloadAllBarButtonItem" destination="8Ub-7M-Uam" id="SUT-RV-pGD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sB-zV-CjT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Download All" id="8Ub-7M-Uam" userLabel="DownloadAll">
+                    <connections>
+                        <action selector="downloadAllButtonTapped:" destination="bmh-JK-rPV" id="0bU-kW-6qm"/>
+                    </connections>
+                </barButtonItem>
             </objects>
-            <point key="canvasLocation" x="2721" y="139"/>
+            <point key="canvasLocation" x="2720.8000000000002" y="138.98050974512745"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RmY-Bh-0mq">

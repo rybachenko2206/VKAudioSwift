@@ -42,7 +42,9 @@ class HomeViewController: UIViewController {
     // MARK: Action funcs
 
     @IBAction func audioButtonTapped(_ sender: UIButton) {
-        
+        let storyboardId = AudioListTableViewController.storyboardIdentifier()
+        let audioVc = UIStoryboard.main().instantiateViewController(withIdentifier: storyboardId)
+        navigationController?.pushViewController(audioVc, animated: true)
     }
     
     // MARK: Private funcs

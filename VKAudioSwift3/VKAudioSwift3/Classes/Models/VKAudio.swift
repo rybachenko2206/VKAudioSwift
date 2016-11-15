@@ -9,7 +9,53 @@
 import Foundation
 
 class VKAudio {
+    // MARK: Properties
+    let audioId: Int
+    let ownerId: Int
+    let url: String
+    var artist: String?
+    var title: String?
+    let duration: Double?
+    let date: Double?
+    let lyricsId: Int?
+    var genre: Genre = Genre.defaultGenge()
     
+    // MARK: Init funcs
+    init(parameters: [String:AnyObject]) {
+        self.audioId = parameters[kAid] as! Int
+        self.ownerId = parameters[kOwnerId] as! Int
+        self.url = parameters[kUrl] as! String
+        self.artist = parameters[kArtist] as? String
+        self.title = parameters[kTitle] as? String
+        self.duration = parameters[kDuration] as? Double
+        self.date = parameters[kDate] as? Double
+        self.lyricsId = parameters[kLyricsId] as? Int
+        
+        let genreId: Int? = parameters[kGenre] as? Int
+        if let genreID = genreId {
+            self.genre = Genre(rawValue: genreID)!
+        }
+    }
+
+    // MARK: Public funcs
+    func saveFileName() -> String {
+        var fileName = ""
+        if title != nil {
+            fileName = title!
+        }
+        if artist != nil {
+            fileName.append(artist!)
+        }
+        if fileName.characters.count == 0 {
+            fileName = NSUUID().uuidString
+        }
+        
+        return fileName
+    }
+    
+    
+    
+    // MARK: Enums
     enum Genre: Int {
         case Rock = 1
         case Pop = 2
@@ -35,8 +81,6 @@ class VKAudio {
         case ElectropopAndDisco = 22
         
         case JazzAndBlues = 1001
-        
-        // MARK: Enum func
         
         static func defaultGenge() -> Genre {
             return Genre.Other
@@ -90,4 +134,5 @@ class VKAudio {
             return strValue
         }
     }
+    
 }

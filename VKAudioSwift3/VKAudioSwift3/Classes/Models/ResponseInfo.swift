@@ -17,8 +17,8 @@ class ResponseInfo {
     required init(response: Any?, error: Error?, task: URLSessionDataTask?) {
         self.response = response
         self.error = error
-        
-        let urlResponse: HTTPURLResponse = task?.response as! HTTPURLResponse
-        self.statusCode = urlResponse.statusCode
+
+        let urlResponse: HTTPURLResponse? = task?.response as? HTTPURLResponse
+        self.statusCode = urlResponse?.statusCode
     }
 }
