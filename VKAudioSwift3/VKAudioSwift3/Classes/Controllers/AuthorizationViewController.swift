@@ -28,7 +28,7 @@ class AuthorizationViewController: UIViewController, UIWebViewDelegate {
         let authLink = String.init(format: kAuthLinkFormat, vkAppID, scopeStr)
         let url = NSURL(string: authLink)
         if url != nil {
-            let request = NSURLRequest(url: url as! URL)
+            let request = NSURLRequest(url: url! as URL)
             webView.loadRequest(request as URLRequest)
         }
     }
@@ -39,7 +39,7 @@ class AuthorizationViewController: UIViewController, UIWebViewDelegate {
     // MARK: —UIWebViewDelegate
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        SVProgressHUD.show()
+//        SVProgressHUD.show()
         
         return true
     }
@@ -50,14 +50,14 @@ class AuthorizationViewController: UIViewController, UIWebViewDelegate {
             if authParams != nil && (authParams?.keys.count)! > 0 {
                 AuthorizationManager.sharedInstance.authorizationInfo = authParams
                 self.dismiss(animated: true, completion: nil)
-                SVProgressHUD.dismiss()
+//                SVProgressHUD.dismiss()
             }
         }
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         print("webView didFailLoadWithError: \(error.localizedDescription)")
-        SVProgressHUD.dismiss()
+//        SVProgressHUD.dismiss()
     }
     
     // MARK: Static funcs
